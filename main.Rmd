@@ -6,7 +6,7 @@ output:
   html_notebook: default
 ---
 
-Hi everyone! Welcome to this penultimate class of the Fall semester. Next week is the second set of project presentations and then it is winter holidays. The goal of today is to 1) have some fun, 2) further build some of your practical skills wrangling and visualising data and 3) gain experience using an API.
+Hi everyone! Welcome to this penultimate class of the Fall semester. Next week is the second set of project presentations and then it is winter holidays. The goal of today is to 1) have some fun, 2) further build some of your practical skills wrangling and visualizing data and 3) gain experience using an API.
 
 See the slides on the course overview page for more information.
 
@@ -102,7 +102,7 @@ We can use these ids later to help us search things.
 
 ##  A little error fixing for keywords
 
-There is an error in the package for this function taht is suppowed to search keywrods, so I've edited it here.
+There is an error in the package for this function that is supposed to search keywords, so I've edited it here.
 ```{r search_keyword}
 search_keyword <- function(api_key, query, page=1){
     
@@ -130,9 +130,9 @@ https://github.com/AndreaCapozio/TMDb
 search_keyword(key_get("TMDB_API"), query = "christmas")
 ```
 
-Notice that this only has 20 rows... are there more Christmas keywords than just that? 20 seems like a suspicisoulsy tidy number...
+Notice that this only has 20 rows... are there more Christmas keywords than just that? 20 seems like a suspicious tidy number...
 
-Our problem is that this function can just pull one 'page' at a time, a page has 20 entries. Reading the documentation shows us that there are a maximum of 1000 pages but I think it is acutally 500 based on some testing.
+Our problem is that this function can just pull one 'page' at a time, a page has 20 entries. Reading the documentation shows us that there are a maximum of 1000 pages but I think it is actually 500 based on some testing.
 
 Thankfully, we can find out how many pages there are by just looking at the `total_pages` list element. Convenient!
 
@@ -169,7 +169,7 @@ my_keywords <- map_dfr(pages, function(x) one_page(x)$results)
 my_keywords
 
 # later, for searching multiple IDs I need to make them a string seperated by | for "OR" or , for "AND"
-keywords_ids <- glue_collapse(christmas_keywords$id, sep="|")
+keywords_ids <- glue_collapse(my_keywords$id, sep="|")
 keywords_ids
 
 # change eval=FALSE in the chunk options, so that is TRUE
@@ -178,7 +178,7 @@ keywords_ids
 
 ## Searching for movies
 
-`discover_movie()` lets us do some searching based on a range of critera. I want movies that are Romance genre, and have "christmas" related keywords.
+`discover_movie()` lets us do some searching based on a range of criteria. I want movies that are Romance genre, and have "christmas" related keywords.
 
 ```{r xmas_romance}
 # Reusing the code structure above. This could probably be streamlined even better with a more general function
